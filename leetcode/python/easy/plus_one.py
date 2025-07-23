@@ -20,9 +20,35 @@ class Solution:
 
 
         return digits
+    
+    def plusOneV2(self, digits: List[int]) -> List[int]:
 
+        pointer = len(digits) - 1
+        borrow = 0
+
+        digits[pointer] = digits[pointer] + 1
+
+        while(digits[pointer] >= 10):
+            
+            borrow = 1
+            digits[pointer] -= 10
+        
+            pointer -= 1
+
+            if pointer < 0:
+                digits.insert(0, 1)
+                break
+
+            digits[pointer] += borrow
+            borrow = 0
+
+        return digits
 
 print(Solution().plusOne([1,0,0]))
 print(Solution().plusOne([1,2,9]))
 print(Solution().plusOne([9,9,9]))
+
+print(Solution().plusOneV2([1,0,0]))
+print(Solution().plusOneV2([1,2,9]))
+print(Solution().plusOneV2([9,9,9]))
 print("finish")
